@@ -90,13 +90,10 @@ class Slacker(WithLogger, WithConfig):
             payload = self.get_with_retry_to_json(murl)
             self.logger.debug("test: %s", payload)
             if payload['ok'] is False:
-                post_data_join = {
-                    'token': self.token,
-            		'channel': cid
-        		}
-            	self.logger.debug("Join in %s, in %s", self.url + "conversations.join", post_data_join)
-        		self.session.post(self.url + "conversations.join", data=post_data_join)
-        		payload = self.get_with_retry_to_json(murl)
+                post_data_join = {'token': self.token,'channel': cid}
+                self.logger.debug("Join in %s, in %s", self.url + "conversations.join", post_data_join)
+                self.session.post(self.url + "conversations.join", data=post_data_join)
+                payload = self.get_with_retry_to_json(murl)
             messages += payload['messages']
             if payload['has_more'] is False:
                 done = True
