@@ -215,7 +215,7 @@ class Destalinator(WithLogger, WithConfig):
 
         if self.config.activated:
             self.post_marked_up_message(channel_name, self.warning_text, message_type='channel_warning')
-            self.action("Warned #{}".format(channel_name))
+            self.action("Warned #{}".format(channel_name).encode('utf-8'))
 
         return True
 
