@@ -245,6 +245,10 @@ class Slacker(WithLogger, WithConfig):
             'channel': channel,
             'text': message.encode('utf-8')
         }
+        post_data_join = {
+        	'token': self.token,
+            'channel': channel
+        }
 
         bot_name = self.config.bot_name
         bot_avatar_url = self.config.bot_avatar_url
@@ -258,6 +262,8 @@ class Slacker(WithLogger, WithConfig):
         if message_type:
             post_data['attachments'] = json.dumps([{'fallback': message_type}], encoding='utf-8')
 
+        self.logger.debug("Join in %s, in %s", self.url + "conversations.join", post_data_join)
+        self.session.post(self.url + "conversations.join", data=post_data_join)
         self.logger.debug("Post in %s, in %s", self.url + "chat.postMessage", post_data)
         p = self.session.post(self.url + "chat.postMessage", data=post_data)
         self.logger.debug("Message in %s", p.json())
