@@ -151,7 +151,7 @@ class Destalinator(WithLogger, WithConfig):
             self.logger.debug("Telling channel #%s: %s", channel_name, say)
             self.post_marked_up_message(channel_name, say, message_type='channel_archive_members')
 
-            self.action("Archiving channel #{}".format(channel_name))
+            self.action("Archiving channel #{}".format(channel_name).encode('utf-8'))
             payload = self.slacker.archive(channel_name)
             if payload['ok']:
                 self.logger.debug("Slack API response to archive: %s", json.dumps(payload, indent=4))
