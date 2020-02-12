@@ -249,7 +249,7 @@ class Slacker(WithLogger, WithConfig):
         bot_name = self.config.bot_name
         bot_avatar_url = self.config.bot_avatar_url
         if bot_name or bot_avatar_url:
-            post_data['as_user'] = False
+            #post_data['as_user'] = False
             if bot_name:
                 post_data['username'] = bot_name
             if bot_avatar_url:
