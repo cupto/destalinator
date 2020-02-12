@@ -259,4 +259,5 @@ class Slacker(WithLogger, WithConfig):
             post_data['attachments'] = json.dumps([{'fallback': message_type}], encoding='utf-8')
 
         p = self.session.post(self.url + "chat.postMessage", data=post_data)
+        self.logger.debug("Message in %s", p.json())
         return p.json()
