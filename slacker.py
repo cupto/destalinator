@@ -88,6 +88,7 @@ class Slacker(WithLogger, WithConfig):
             else:
                 murl += "&latest={}".format(int(time.time()))
             payload = self.get_with_retry_to_json(murl)
+            self.logger.debug("test: %s", payload)
             messages += payload['messages']
             if payload['has_more'] is False:
                 done = True
