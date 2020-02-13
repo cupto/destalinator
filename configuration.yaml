@@ -37,6 +37,23 @@ ignore_channels:
   - canales-inactivos
   - canales-nuevos
   - archivaldo-control
+  - askanything 
+  - asktech 
+  - deportv 
+  - gas_tronomico 
+  - kheverga 
+  - motivate 
+  - nocontext 
+  - nosvaleverga 
+  - nsfl 
+  - spanishnt 
+  - til 
+  - tuitazos 
+  - tvnotas 
+  - viejitoenojado 
+  - visto_en_fb 
+  - yacallatepincherafa 
+  - salebai
 
 # Regular expression patterns for additional channels to ignore during archiving
 ignore_channel_patterns:
