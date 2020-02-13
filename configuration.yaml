@@ -52,6 +52,7 @@ ignore_channel_patterns:
 ignore_users:
   - Slackbot
   - Archivaldo
+  - Alvaritobot
 
 # Which message subtypes count as activity?
 # "None" means the message was typed by a human and is included by default.
