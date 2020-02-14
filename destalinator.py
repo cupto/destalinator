@@ -138,7 +138,7 @@ class Destalinator(WithLogger, WithConfig):
         return not any(
             # the message is not from an ignored user
             x.get("bot_profile") and x.get("bot_profile").get("name")\
-            x.get("user") not in self.config.ignore_users \
+            and x.get("user") not in self.config.ignore_users \
             and x.get("username") not in self.config.ignore_users \
             and (
                 # the message must have text that doesn't include ignored words
