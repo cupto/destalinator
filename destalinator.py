@@ -110,15 +110,15 @@ class Destalinator(WithLogger, WithConfig):
         Definition of stale is: no messages in the last `days` which are not from config.ignore_users.
         """
         if not self.channel_minimum_age(channel_name, days):
-			self.logger.debug("Stale: No channel_minimum_age for: %s", channel_name)
+	        self.logger.debug("Stale: No channel_minimum_age for: %s", channel_name)
             return False
 
         if self.ignore_channel(channel_name):
-			self.logger.debug("Stale: Ignore_channel for: %s", channel_name)
+	        self.logger.debug("Stale: Ignore_channel for: %s", channel_name)
             return False
 
         if self.slacker.channel_has_only_restricted_members(channel_name):
-			self.logger.debug("Stale: channel_has_only_restricted_members for: %s", channel_name)
+	        self.logger.debug("Stale: channel_has_only_restricted_members for: %s", channel_name)
             return False
 
         messages = self.get_messages(channel_name, days)
