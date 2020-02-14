@@ -123,9 +123,9 @@ class Destalinator(WithLogger, WithConfig):
 
         messages = self.get_messages(channel_name, days)
         for xm in messages:
-            if xm.get("user") in self.config.ignore_users
+            if xm.get("user") in self.config.ignore_users:
                 self.logger.debug("Stale: User %s ignored in %s", xm.get("user"),channel_name)
-            if xm.get("username") in self.config.ignore_users
+            if xm.get("username") in self.config.ignore_users:
                 self.logger.debug("Stale: Username %s ignored in %s", xm.get("username"),channel_name)
 
         # return True (stale) if none of the messages match the criteria below
