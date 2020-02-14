@@ -40,6 +40,7 @@ ignore_channels:
   - askanything 
   - asktech 
   - deportv 
+  - domain-check
   - gas_tronomico 
   - kheverga 
   - motivate 
@@ -78,6 +79,7 @@ included_subtypes:
   - channel_name
   - channel_purpose
   - channel_topic
+  - channel_join
   - file_mention
   - file_share
   - me_message
