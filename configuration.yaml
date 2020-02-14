@@ -79,13 +79,11 @@ included_subtypes:
   - channel_name
   - channel_purpose
   - channel_topic
-  - channel_join
   - file_mention
   - file_share
   - me_message
   - message_replied
   - reply_broadcast
-  - slackbot_response
 
 # When should destalinator run?
 schedule_hour: 4
