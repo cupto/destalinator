@@ -130,13 +130,14 @@ class Destalinator(WithLogger, WithConfig):
                 self.logger.debug("Stale: User %s ignored in %s", xm.get("user"),channel_name)
             if xm.get("name") in self.config.ignore_users:
                 self.logger.debug("Stale: Username %s ignored in %s", xm.get("username"),channel_name)
-            if xm.get("bot_profile").get("username") in self.config.ignore_users:
+            if xmbot in self.config.ignore_users:
                 self.logger.debug("Stale: Username %s ignored in %s", xmbot,channel_name)
                 
 
         # return True (stale) if none of the messages match the criteria below
         return not any(
             # the message is not from an ignored user
+            x.get("bot_profile") and x.get("bot_profile").get("name")\
             x.get("user") not in self.config.ignore_users \
             and x.get("username") not in self.config.ignore_users \
             and (
