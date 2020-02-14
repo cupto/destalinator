@@ -124,7 +124,7 @@ class Destalinator(WithLogger, WithConfig):
         messages = self.get_messages(channel_name, days)
         self.logger.debug("Stale: Ignored Users: %s", ''.join(self.config.ignore_users))
         for xm in messages:
-            self.logger.debug("Stale: User: %s", xm.get("user"))
+            self.logger.debug("Stale: User: %s, Username: %s", xm.get("user"), xm.get("username"))
             if xm.get("user") in self.config.ignore_users:
                 self.logger.debug("Stale: User %s ignored in %s", xm.get("user"),channel_name)
             if xm.get("username") in self.config.ignore_users:
