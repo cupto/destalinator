@@ -124,17 +124,17 @@ class Destalinator(WithLogger, WithConfig):
         messages = self.get_messages(channel_name, days)
         self.logger.debug("Stale: Ignored Users: %s", ''.join(self.config.ignore_users))
         for xm in messages:
-            self.logger.debug("Stale: User: %s, Username: %s", xm.get("user"), xm.get("username"))
+            self.logger.debug("Stale: User: %s, Username: %s", xm.get("user"), xm.get("name"))
             if xm.get("user") in self.config.ignore_users:
                 self.logger.debug("Stale: User %s ignored in %s", xm.get("user"),channel_name)
-            if xm.get("username") in self.config.ignore_users:
-                self.logger.debug("Stale: Username %s ignored in %s", xm.get("username"),channel_name)
+            if xm.get("name") in self.config.ignore_users:
+                self.logger.debug("Stale: Username %s ignored in %s", xm.get("name"),channel_name)
 
         # return True (stale) if none of the messages match the criteria below
         return not any(
             # the message is not from an ignored user
             x.get("user") not in self.config.ignore_users \
-            and x.get("username") not in self.config.ignore_users \
+            and x.get("name") not in self.config.ignore_users \
             and (
                 # the message must have text that doesn't include ignored words
                 (x.get("text") and b":dolphin:" not in x.get("text").encode('utf-8', 'ignore')) \
