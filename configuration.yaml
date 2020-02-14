@@ -75,7 +75,6 @@ ignore_users:
 # Which message subtypes count as activity?
 # "None" means the message was typed by a human and is included by default.
 included_subtypes:
-  - bot_message
   - channel_name
   - channel_purpose
   - channel_topic
