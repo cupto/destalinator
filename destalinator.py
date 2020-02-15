@@ -148,7 +148,7 @@ class Destalinator(WithLogger, WithConfig):
                 or x.get("attachments")  # or the message must have attachments
             )\
             and (
-                 x.get("bot_profile") and x.get("bot_profile").get("name") not in self.config.ignore_users)            
+                 x.get("bot_profile") and x.get("bot_profile").get("name") not in self.config.ignore_users        
             )
             for x in messages
         )
