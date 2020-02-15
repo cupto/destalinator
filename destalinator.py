@@ -143,11 +143,6 @@ class Destalinator(WithLogger, WithConfig):
             x.get("user") not in self.config.ignore_users \
             and x.get("username") not in self.config.ignore_users \
             and (
-                # the message must have text that doesn't include ignored words
-                (x.get("text") and b":dolphin:" not in x.get("text").encode('utf-8', 'ignore')) \
-                or x.get("attachments")  # or the message must have attachments
-            )\
-            and (
                  x.get("bot_profile") and x.get("bot_profile").get("name") not in self.config.ignore_users        
             )
             for x in messages
