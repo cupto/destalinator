@@ -120,23 +120,22 @@ class Destalinator(WithLogger, WithConfig):
         if self.slacker.channel_has_only_restricted_members(channel_name):
             self.logger.debug("Stale: channel_has_only_restricted_members for: %s", channel_name)
             return False
-
+        
         messages = self.get_messages(channel_name, days)
         self.logger.debug("Stale: Ignored Users: %s", ''.join(self.config.ignore_users))
         for xm in messages:
             xmbot = xm.get("bot_profile").get("name") if xm.get("bot_profile") else None 
             self.logger.debug("Stale: User: %s, Username: %s, BotName: %s", xm.get("user"), xm.get("username"), xmbot)
-            if xm.get("user") in self.config.ignore_users:
+            if xm.get("user") not in self.config.ignore_users:
                 self.logger.debug("Stale: User %s ignored in %s", xm.get("user"),channel_name)
                 return False
-            if xm.get("name") in self.config.ignore_users:
+            if xm.get("name") not in self.config.ignore_users:
                 self.logger.debug("Stale: Username %s ignored in %s", xm.get("username"),channel_name)
                 return False
-            if xmbot in self.config.ignore_users:
+            if xmbot not in self.config.ignore_users:
                 self.logger.debug("Stale: Username %s ignored in %s", xmbot,channel_name)
                 return False
                 
-        return True
         # return True (stale) if none of the messages match the criteria below
         '''
         return not any(
