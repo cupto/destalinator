@@ -128,30 +128,16 @@ class Destalinator(WithLogger, WithConfig):
             xmname = xm.get("username")
             xmuser= xm.get("user")
             self.logger.debug("Stale: User: %s, Username: %s, BotName: %s", xmuser, xmname, xmbot)
-            if xmuser not in self.config.ignore_user:
+            if xmuser in self.config.ignore_user:
                 self.logger.debug("Stale: User %s not ignored in %s", xmuser,channel_name)
-                return False
-            if xmname not in self.config.ignore_users:
+            elif xmname in self.config.ignore_users:
                 self.logger.debug("Stale: Username %s not ignored in %s", xmname,channel_name)
-                return False
-            if xmbot not in self.config.ignore_users:
+            elif xmbot in self.config.ignore_users:
                 self.logger.debug("Stale: Botname %s not ignored in %s", xmbot,channel_name)
-                return False
-                
-        #if xmbot not in self.config.ignore_users and xmname not in self.config.ignore_users and xmbot not in self.config.ignore_users:
-                
-        # return True (stale) if none of the messages match the criteria below
-        '''
-        return not any(
-            # the message is not from an ignored user
-            x.get("user") not in self.config.ignore_users \
-            and x.get("username") not in self.config.ignore_users \
-            and (
-                 x.get("bot_profile") and x.get("bot_profile").get("name") not in self.config.ignore_users        
-            )
-            for x in messages
-        )
-        '''
+            else
+               return False
+         
+        return True
 
     # channel actions
 
