@@ -129,29 +129,30 @@ class Destalinator(WithLogger, WithConfig):
             xmuser= xm.get("user")
             self.logger.debug("Stale: User: %s, Username: %s, BotName: %s", xmuser, xmname, xmbot)
             if xmuser not in self.config.ignore_user:
-                self.logger.debug("Stale: User %s ignored in %s", xmuser,channel_name)
+                self.logger.debug("Stale: User %s not ignored in %s", xmuser,channel_name)
             if xmname not in self.config.ignore_users:
-                self.logger.debug("Stale: Username %s ignored in %s", xmname,channel_name)
+                self.logger.debug("Stale: Username %s not ignored in %s", xmname,channel_name)
             if xmbot not in self.config.ignore_users:
-                self.logger.debug("Stale: Username %s ignored in %s", xmbot,channel_name)
-            if xmbot not in self.config.ignore_users and xmname not in self.config.ignore_users and xmbot not in self.config.ignore_users:
-                return True
+                self.logger.debug("Stale: Botname %s not ignored in %s", xmbot,channel_name)
+                
+            #if xmbot not in self.config.ignore_users and xmname not in self.config.ignore_users and xmbot not in self.config.ignore_users:
                 
         # return True (stale) if none of the messages match the criteria below
-        '''
         return not any(
             # the message is not from an ignored user
-            (x.get("bot_profile") and x.get("bot_profile").get("name") not in self.config.ignore_users) \
             and x.get("user") not in self.config.ignore_users \
             and x.get("username") not in self.config.ignore_users \
             and (
                 # the message must have text that doesn't include ignored words
                 (x.get("text") and b":dolphin:" not in x.get("text").encode('utf-8', 'ignore')) \
                 or x.get("attachments")  # or the message must have attachments
+            )\
+            and (
+                 x.get("bot_profile") and x.get("bot_profile").get("name") not in self.config.ignore_users)            
             )
             for x in messages
         )
-        '''
+        
 
     # channel actions
 
