@@ -135,7 +135,7 @@ class Destalinator(WithLogger, WithConfig):
             if xmbot not in self.config.ignore_users:
                 self.logger.debug("Stale: Username %s ignored in %s", xmbot,channel_name)
             if xmbot not in self.config.ignore_users and xmname not in self.config.ignore_users and xmbot not in self.config.ignore_users:
-                return False
+                return True
                 
         # return True (stale) if none of the messages match the criteria below
         '''
