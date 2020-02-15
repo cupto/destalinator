@@ -137,7 +137,7 @@ class Destalinator(WithLogger, WithConfig):
         # return True (stale) if none of the messages match the criteria below
         return not any(
             # the message is not from an ignored user
-            x.get("bot_profile") and x.get("bot_profile").get("name")\
+            x.get("bot_profile") and x.get("bot_profile").get("name") not in self.config.ignore_users \
             and x.get("user") not in self.config.ignore_users \
             and x.get("username") not in self.config.ignore_users \
             and (
@@ -247,6 +247,7 @@ class Destalinator(WithLogger, WithConfig):
                 self.logger.debug("Not warning #%s because it's in ignore_channels", channel)
                 continue
             if self.stale(channel, days):
+                self.logger.debug("Warning #%s because it's STALE", channel)
                 if self.warn(channel, days, force_warn):
                     stale.append(channel)
             self.flush_channel_cache(channel)
