@@ -134,7 +134,7 @@ class Destalinator(WithLogger, WithConfig):
                 self.logger.debug("Stale: Username %s not ignored in %s", xmname,channel_name)
             elif xmbot in self.config.ignore_users:
                 self.logger.debug("Stale: Botname %s not ignored in %s", xmbot,channel_name)
-            else
+            else:
                return False
          
         return True
